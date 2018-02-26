@@ -1,19 +1,29 @@
-# jacoco-parse
+# jacoco-json
 
-Parse jacoco results file and return JSON
+Parse [jacoco](http://www.eclemma.org/jacoco/) report files, and return a JSON representation in a [lcov-parse](https://github.com/davglass/lcov-parse) compatible manner.
 
-The output is based on, and intended to be compatible with, https://github.com/davglass/lcov-parse
-as well as https://github.com/vokal/cobertura-parse
+## Usage
 
-## Use
+```javascript
+var jacoco = require("jacoco-json");
 
-```js
-var jacoco = require( "jacoco-parse" );
+// Parse by file path
+jacoco.parseFile("filepath.xml")
+    .then(function (result) {
+        console.log(JSON.stringify(result));
+    }).catch(function (err) {
+        console.error(err);
+    });
 
-// parse by file path
-jacoco.parseFile( "filepath.xml", function( err, result ) { ... } );
-
-// or parse file contents
-jacoco.parseContent( "<?xml version="1.0" ?><report>...</report>",
-    function( err, result ) { ... } );
+// Parse by file contents
+jacoco.parseContent("<?xml version=\"1.0\" ?><report>...</report>")
+    .then(function (result) {
+        console.log(JSON.stringify(result));
+    }).catch(function (err) {
+        console.error(err);
+    });
 ```
+
+## Thanks
+
+This repo was initially forked from [vokal/jacoco-parse](https://github.com/vokal/jacoco-parse). Thanks a lot!
