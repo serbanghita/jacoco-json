@@ -2,10 +2,16 @@
 
 Parse [jacoco](http://www.eclemma.org/jacoco/) report files, and return a JSON representation in a [lcov-parse](https://github.com/davglass/lcov-parse) compatible manner.
 
+## Installation
+
+```bash
+$ npm i @cvrg-report/jacoco-json --save
+```
+
 ## Usage
 
 ```javascript
-var jacoco = require("jacoco-json");
+var jacoco = require("@cvrg-report/jacoco-json");
 
 // Parse by file path
 jacoco.parseFile("filepath.xml")
