@@ -30,6 +30,13 @@ jacoco.parseContent("<?xml version=\"1.0\" ?><report>...</report>")
     });
 ```
 
+**CLI**
+
+```shell script
+chmod +x ./src/bin.js
+./src/bin.js /Users/sghita/Downloads/jacocoTestReport.xml
+```
+
 ## Thanks
 
 This repo was initially forked from [vokal/jacoco-parse](https://github.com/vokal/jacoco-parse). Thanks a lot!
