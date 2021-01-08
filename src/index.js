@@ -6,7 +6,7 @@ var parseString = require("xml2js").parseString;
 var parse = {};
 
 function getCounter(source, type) {
-    return source.counter.filter(function (counter) {
+    return source.counter && source.counter.filter(function (counter) {
         return counter.$.type === type;
     })[0];
 }
@@ -23,11 +23,23 @@ var unpackage = function (report) {
 
             var c = pack.class.filter(function(cl) {
                 return cl.$.name === className;
-            })[0];
+            })[0] || {};
 
-            var methods = getCounter(s, "METHOD");
-            var lines = getCounter(s, "LINE");
-            var branches = getCounter(s, "BRANCH");
+            var methods = getCounter(s, "METHOD") || {$ :{
+                    "type": "METHOD",
+                    "missed": "0",
+                    "covered": "0"
+                }};
+            var lines = getCounter(s, "LINE") || {$ :{
+                    "type": "LINE",
+                    "missed": "0",
+                    "covered": "0"
+                }};
+            var branches = getCounter(s, "BRANCH") || {$ :{
+                "type": "BRANCH",
+                "missed": "0",
+                "covered": "0"
+            }};
 
             return {
                 title: s.$.name,
